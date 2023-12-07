@@ -23,7 +23,6 @@ public class TaskDto {
     @Length(max = 255, message = "Title length must be smaller than 255 characters", groups = {OnUpdate.class, OnCreate.class})
     private String title;
 
-    @NotNull(message = "Description must be not null", groups = {OnUpdate.class, OnCreate.class})
     private String description;
 
     private Status status;
