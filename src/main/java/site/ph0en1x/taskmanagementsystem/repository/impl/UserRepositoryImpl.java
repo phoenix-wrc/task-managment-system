@@ -1,8 +1,8 @@
 package site.ph0en1x.taskmanagementsystem.repository.impl;
 
 import org.springframework.stereotype.Repository;
-import site.ph0en1x.taskmanagementsystem.model.user.Role;
-import site.ph0en1x.taskmanagementsystem.model.user.User;
+import site.ph0en1x.taskmanagementsystem.model.entity.user.Role;
+import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
 import site.ph0en1x.taskmanagementsystem.repository.UserRepository;
 
 import java.util.Optional;

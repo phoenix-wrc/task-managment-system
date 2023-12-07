@@ -1,6 +1,6 @@
 package site.ph0en1x.taskmanagementsystem.service;
 
-import site.ph0en1x.taskmanagementsystem.model.user.User;
+import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
 
 public interface UserService {
     User getById(Long id);

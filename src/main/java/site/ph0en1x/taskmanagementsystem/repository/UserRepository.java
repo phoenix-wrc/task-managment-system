@@ -1,9 +1,8 @@
 package site.ph0en1x.taskmanagementsystem.repository;
 
-import site.ph0en1x.taskmanagementsystem.model.user.Role;
-import site.ph0en1x.taskmanagementsystem.model.user.User;
+import site.ph0en1x.taskmanagementsystem.model.entity.user.Role;
+import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository {

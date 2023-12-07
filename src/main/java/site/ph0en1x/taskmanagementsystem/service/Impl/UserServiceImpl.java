@@ -1,8 +1,10 @@
 package site.ph0en1x.taskmanagementsystem.service.Impl;
 
-import site.ph0en1x.taskmanagementsystem.model.user.User;
+import org.springframework.stereotype.Service;
+import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
 import site.ph0en1x.taskmanagementsystem.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
     @Override
     public User getById(Long id) {

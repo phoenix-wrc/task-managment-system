@@ -1,7 +1,7 @@
 package site.ph0en1x.taskmanagementsystem.repository.impl;
 
 import org.springframework.stereotype.Repository;
-import site.ph0en1x.taskmanagementsystem.model.task.Task;
+import site.ph0en1x.taskmanagementsystem.model.entity.task.Task;
 import site.ph0en1x.taskmanagementsystem.repository.TaskRepository;
 
 import java.util.List;

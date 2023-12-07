@@ -1,8 +1,8 @@
 package site.ph0en1x.taskmanagementsystem.service;
 
-import site.ph0en1x.taskmanagementsystem.model.task.Priority;
-import site.ph0en1x.taskmanagementsystem.model.task.Status;
-import site.ph0en1x.taskmanagementsystem.model.task.Task;
+import site.ph0en1x.taskmanagementsystem.model.entity.task.Priority;
+import site.ph0en1x.taskmanagementsystem.model.entity.task.Status;
+import site.ph0en1x.taskmanagementsystem.model.entity.task.Task;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface TaskService {
 
     Task update(Task task);
 
-    Task create(Task task);
+    Task create(Task task, Long authorId);
 
     void appointToExecutorById(Long taskId, Long userId);
 

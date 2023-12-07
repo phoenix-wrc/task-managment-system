@@ -1,7 +1,7 @@
-package site.ph0en1x.taskmanagementsystem.model.task;
+package site.ph0en1x.taskmanagementsystem.model.entity.task;
 
 import lombok.Data;
-import site.ph0en1x.taskmanagementsystem.model.user.User;
+import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
 
 import java.time.LocalDateTime;
 
@@ -12,8 +12,8 @@ public class Task {
     private String description;
     private Status status;
     private Priority priority;
-    private User author;
-    private User executor;
+    private Long author;
+    private Long executor;
     private LocalDateTime createDate;
     private LocalDateTime expirationDate;
 }

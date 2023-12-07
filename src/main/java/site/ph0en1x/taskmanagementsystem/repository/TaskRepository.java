@@ -1,6 +1,6 @@
 package site.ph0en1x.taskmanagementsystem.repository;
 
-import site.ph0en1x.taskmanagementsystem.model.task.Task;
+import site.ph0en1x.taskmanagementsystem.model.entity.task.Task;
 
 import java.util.List;
 import java.util.Optional;

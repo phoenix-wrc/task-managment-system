@@ -1,12 +1,14 @@
 package site.ph0en1x.taskmanagementsystem.service.Impl;
 
-import site.ph0en1x.taskmanagementsystem.model.task.Priority;
-import site.ph0en1x.taskmanagementsystem.model.task.Status;
-import site.ph0en1x.taskmanagementsystem.model.task.Task;
+import org.springframework.stereotype.Service;
+import site.ph0en1x.taskmanagementsystem.model.entity.task.Priority;
+import site.ph0en1x.taskmanagementsystem.model.entity.task.Status;
+import site.ph0en1x.taskmanagementsystem.model.entity.task.Task;
 import site.ph0en1x.taskmanagementsystem.service.TaskService;
 
 import java.util.List;
 
+@Service
 public class TaskServiceImpl implements TaskService {
     @Override
     public Task getById(Long id) {
@@ -24,7 +26,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task create(Task task) {
+    public Task create(Task task, Long authorId) {
         return null;
     }
 
