@@ -14,9 +14,9 @@ public interface TaskRepository {
 
     void appointToExecutorById(Long taskId, Long userId);
 
-    void update(Task user);
+    void update(Task task);
 
-    void create(Task user);
+    void create(Task task);
 
     void delete(Long id);
 }

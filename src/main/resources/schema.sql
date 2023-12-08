@@ -39,8 +39,9 @@ create table if not exists user_task_owner
 
 create table if not exists user_task_executor
 (
-    task_id bigint not null,
-    user_id bigint not null,
+    task_id      bigint not null,
+    user_id      bigint not null,
+    date_appoint timestamp DEFAULT Now(),
     primary key (user_id, task_id),
     constraint fk_user_task_user foreign key (user_id) references app_user (id) on delete cascade on update no action,
     constraint fk_user_task_task foreign key (task_id) references task (id) on delete cascade on update no action

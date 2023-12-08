@@ -9,10 +9,14 @@ spring:
       mode: always
       continue-on-error: false
     #      data-locations: classpath:demo_data.sql
+logging:
+  level:
+    org.springframework.web: ERROR
+    site.ph0en1x.taskmanagementsystem.controller: DEBUG
+
 
 security:
   jwt:
     secret: 0J3QtdC80L3QvtCz0L7QodC+0LvQuNCU0LvRj9CS0LDRiNC10LPQvtCn0LDRj9CY0LvQuNCa0L7RhNC1
     access: 360_000_000
     refresh: 2_592_000_000
-

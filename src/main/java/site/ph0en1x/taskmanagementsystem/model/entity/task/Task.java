@@ -13,7 +13,7 @@ public class Task {
     private Status status;
     private Priority priority;
     private Long author;
-    private Long executor;
+    private Long executorId;
     private LocalDateTime createDate;
     private LocalDateTime expirationDate;
 }
