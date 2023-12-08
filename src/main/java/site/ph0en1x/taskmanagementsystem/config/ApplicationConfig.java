@@ -14,11 +14,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import site.ph0en1x.taskmanagementsystem.security.JwtTokenFilter;
+import site.ph0en1x.taskmanagementsystem.security.JwtTokenProvider;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class ApplicationConfig {
+    private final JwtTokenProvider tokenProvider;
     private final ApplicationContext applicationContext;
 
     @Bean
@@ -32,7 +35,7 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .cors()
                 .and()
@@ -55,7 +58,7 @@ public class ApplicationConfig {
                 .anyRequest().authenticated()
                 .and()
                 .anonymous().disable()
-                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtTokenFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 }
