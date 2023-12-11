@@ -6,16 +6,21 @@ import org.springframework.transaction.annotation.Transactional;
 import site.ph0en1x.taskmanagementsystem.model.entity.task.Priority;
 import site.ph0en1x.taskmanagementsystem.model.entity.task.Status;
 import site.ph0en1x.taskmanagementsystem.model.entity.task.Task;
+import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
 import site.ph0en1x.taskmanagementsystem.model.exception.ResourceNotFoundException;
 import site.ph0en1x.taskmanagementsystem.repository.TaskRepository;
 import site.ph0en1x.taskmanagementsystem.service.TaskService;
+import site.ph0en1x.taskmanagementsystem.service.UserService;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
+
     private final TaskRepository taskRepository;
+
+    private final UserService userService;
 
     @Override
     @Transactional(readOnly = true)
@@ -26,7 +31,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional(readOnly = true)
     public List<Task> getAllByUserId(Long userId) {
-        return taskRepository.findAllByUserId(userId);
+        return taskRepository.findAllByAuthorId(userId);
     }
 
     @Override
@@ -35,43 +40,30 @@ public class TaskServiceImpl implements TaskService {
         if (task.getStatus() == null) {
             task.setStatus(Status.AWAITING);
         }
-        if (task.getExecutorId() != null) {
-            taskRepository.appointToExecutorById(task.getId(), task.getExecutorId());
-        }
-        taskRepository.update(task);
+        taskRepository.save(task);
         return task;
     }
 
     @Override
     @Transactional
     public Task create(Task task, Long authorId) {
+        User user = userService.getById(authorId);
         task.setStatus(Status.AWAITING);
         if (task.getPriority() == null) {
             task.setPriority(Priority.LOW);
         }
-        taskRepository.create(task);
-        taskRepository.appointToUserById(task.getId(), authorId);
+        user.getTasksOwn().add(task);
+        taskRepository.save(task);
+        userService.update(user);
         return task;
     }
 
-    @Override
-    @Transactional
-    public void appointToExecutorById(Long taskId, Long userId) {
-        taskRepository.appointToExecutorById(taskId, userId);
-
-    }
-
-    @Override
-    @Transactional
-    public void setStatusById(Long taskId, Status status) {
-
-    }
-
-    @Override
-    @Transactional
-    public void setPriorityById(Long taskId, Priority priority) {
-
-    }
+//    @Override
+//    @Transactional
+//    public void appointToExecutorById(Long taskId, Long userId) {
+//        taskRepository.appointToExecutorById(taskId, userId);
+//
+//    }
 
     @Override
     @Transactional

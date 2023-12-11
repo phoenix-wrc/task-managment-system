@@ -35,6 +35,6 @@ public class Task {
 
     private LocalDateTime expirationDate;
 
-    
+    @OneToMany
     private List<Comment> comments;
 }

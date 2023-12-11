@@ -11,13 +11,11 @@ spring:
     enabled: true
 #    default-schema: task-management-system
     liquibase-schema: ${POSTGRES_SCHEMA}
+
 logging:
   level:
     org.springframework.web: ERROR
     site.ph0en1x.taskmanagementsystem: DEBUG
-
-mybatis:
-  mapper-locations: classpath:mybatis/mapper/*.xml
 
 security:
   jwt:

@@ -16,19 +16,34 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
            t.expiration_date as expiration_date,
            t.create_date     as create_date,
            t.status          as status,
-           uto.user_id       as author_id,
-           te.user_id        as executor_id,
            tp.priority_name  as priority
-    from TASK t
-             join user_task_owner ut on t.id = ut.task_id
-             join task_priority tp on tp.id = t.priority_id
-             join user_task_executor te on te.task_id = t.id
-             join user_task_owner uto on t.id = uto.task_id
-    where ut.user_id = :userId
-            """)
+    from "task-management-system".TASK t
+             join "task-management-system".user_task_owner ut on t.id = ut.task_id
+             join "task-management-system".task_priority tp on tp.id = t.priority_id
+             join "task-management-system".user_task_executor te on te.task_id = t.id
+    where te.user_id = :userId
+            """, nativeQuery = true)
+    List<Task> findAllByExecutorId(@Param("userId") Long userId);
+
+    //           uto.user_id       as author_id,
+    //           te.user_id        as executor_id,
+    @Query(value = """
+    SELECT t.id              as id,
+           t.title           as title,
+           t.description     as description,
+           t.expiration_date as expiration_date,
+           t.create_date     as create_date,
+           t.status          as status,
+           tp.priority_name  as priority
+    from "task-management-system".TASK t
+             join "task-management-system".user_task_owner ut on t.id = ut.task_id
+             join "task-management-system".task_priority tp on tp.id = t.priority_id
+             join "task-management-system".user_task_owner uto on t.id = uto.task_id
+    where uto.user_id = :userId
+            """, nativeQuery = true)
     List<Task> findAllByAuthorId(@Param("userId") Long userId);
-
-    void appointToUserById(Long taskId, Long userId);
-
-    void appointToExecutorById(Long taskId, Long userId);
+//
+//    void appointToUserById(@Param("taskId")Long taskId, @Param("userId")Long userId);
+//
+//    void appointToExecutorById(@Param("taskId")Long taskId, @Param("userId")Long userId);
 }
