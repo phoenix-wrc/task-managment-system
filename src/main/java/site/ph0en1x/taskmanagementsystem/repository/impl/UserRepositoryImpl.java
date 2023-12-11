@@ -34,6 +34,7 @@ public class UserRepositoryImpl implements UserRepository {
                    t.title           as task_title,
                    t.description     as task_description,
                    t.expiration_date as task_expiration_date,
+                   t.expiration_date as task_create_date,
                    t.status          as task_status,
                    tp.priority_name  as task_priority,
                    te.user_id        as task_executor_id,
@@ -122,6 +123,7 @@ public class UserRepositoryImpl implements UserRepository {
                 return Optional.ofNullable(UserRowMapper.mapRow(rs));
             }
         } catch (SQLException ex) {
+            log.debug(ex.getMessage());
             throw new ResourceMappingException("Error while finding user by id");
         }
     }
@@ -156,6 +158,7 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setLong(6, user.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
+            log.debug(ex.getMessage());
             throw new ResourceMappingException("Error while updating user");
         }
     }
@@ -178,6 +181,7 @@ public class UserRepositoryImpl implements UserRepository {
                 user.setId(rs.getLong(1));
             }
         } catch (SQLException ex) {
+            log.debug(ex.getMessage());
             throw new ResourceMappingException("Error while creating user");
         }
     }
@@ -192,6 +196,7 @@ public class UserRepositoryImpl implements UserRepository {
 
             statement.executeUpdate();
         } catch (SQLException ex) {
+            log.debug(ex.getMessage());
             throw new ResourceMappingException("Error while insert user role");
         }
     }
@@ -209,6 +214,7 @@ public class UserRepositoryImpl implements UserRepository {
                 return rs.getBoolean(1);
             }
         } catch (SQLException ex) {
+            log.debug(ex.getMessage());
             throw new ResourceMappingException("Error while checking is task owner");
         }
     }
@@ -226,6 +232,7 @@ public class UserRepositoryImpl implements UserRepository {
                 return rs.getBoolean(1);
             }
         } catch (SQLException ex) {
+            log.debug(ex.getMessage());
             throw new ResourceMappingException("Error while checking is task executor");
         }
     }
@@ -239,6 +246,7 @@ public class UserRepositoryImpl implements UserRepository {
 
             statement.executeUpdate();
         } catch (SQLException ex) {
+            log.debug(ex.getMessage());
             throw new ResourceMappingException("Error while deleting user");
         }
 

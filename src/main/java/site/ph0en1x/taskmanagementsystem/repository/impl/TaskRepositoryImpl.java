@@ -1,6 +1,7 @@
 package site.ph0en1x.taskmanagementsystem.repository.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import site.ph0en1x.taskmanagementsystem.model.entity.task.Task;
 import site.ph0en1x.taskmanagementsystem.model.exception.ResourceMappingException;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class TaskRepositoryImpl implements TaskRepository {
     private final DataSourceConfig dataSourceConfig;
     private final String FIND_BY_ID = """
@@ -38,12 +40,15 @@ public class TaskRepositoryImpl implements TaskRepository {
                    t.expiration_date as task_expiration_date,
                    t.create_date     as task_create_date,
                    t.status          as task_status,
-           
+                   uto.user_id       as task_author_id,
+                   te.user_id        as task_executor_id,    
                    tp.priority_name  as task_priority
                    
             from task t
                      join user_task_owner ut on t.id = ut.task_id
                      join task_priority tp on tp.id = t.priority_id
+                     join user_task_executor te on te.task_id = t.id
+                     join user_task_owner uto on t.id = uto.task_id
             where ut.user_id = ?
             """;
     private final String ASSIGN = """
@@ -109,6 +114,7 @@ public class TaskRepositoryImpl implements TaskRepository {
                 return TaskRowMapper.mapRows(rs);
             }
         } catch (SQLException ex) {
+            log.debug(ex.getMessage());
             throw new ResourceMappingException("Error while finding all task by user id");
         }
     }

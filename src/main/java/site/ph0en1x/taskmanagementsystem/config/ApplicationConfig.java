@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -27,7 +27,7 @@ import site.ph0en1x.taskmanagementsystem.security.JwtTokenProvider;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class ApplicationConfig {
     private final JwtTokenProvider tokenProvider;
@@ -45,7 +45,7 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public OpenAPI openAPI () {
+    public OpenAPI openAPI() {
         return new OpenAPI()
                 .addSecurityItem(new SecurityRequirement()
                         .addList("bearerAuth"))
@@ -58,7 +58,7 @@ public class ApplicationConfig {
                         .title("Task management system")
                         .description("Demo application")
                         .version("1.0")
-        );
+                );
     }
 
     @Bean

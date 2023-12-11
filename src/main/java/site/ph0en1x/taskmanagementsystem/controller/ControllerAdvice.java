@@ -4,6 +4,7 @@ import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -65,6 +66,13 @@ public class ControllerAdvice {
                         constraintViolation -> constraintViolation.getMessage()
                 )));
         return body;
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionBody handlerAuthenticationException(AuthenticationException ex) {
+        log.debug(ex.getMessage());
+        return new ExceptionBody("Authentication failed.");
     }
 
     @ExceptionHandler(Exception.class)

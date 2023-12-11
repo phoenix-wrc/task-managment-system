@@ -42,29 +42,22 @@ public class TaskRowMapper {
         while (rs.next()) {
             Task task = new Task();
             task.setId(rs.getLong("task_id"));
-            log.debug(task.getId().toString());
             if (!rs.wasNull()) {
                 task.setTitle(rs.getString("task_title"));
-                log.debug(task.getTitle());
                 task.setDescription(rs.getString("task_description"));
-                log.debug(task.getDescription());
                 Timestamp timestamp = rs.getTimestamp("task_expiration_date");
                 if (timestamp != null) {
                     task.setExpirationDate(timestamp.toLocalDateTime());
                 }
                 task.setCreateDate(rs.getTimestamp("task_create_date").toLocalDateTime());
-                log.debug(task.getExpirationDate().toString());
                 task.setStatus(Status.valueOf(rs.getString("task_status")));
-                log.debug(task.getCreateDate().toString());
-                log.debug(task.getStatus().toString());
                 task.setPriority(Priority.valueOf(rs.getString("task_priority")));
-                log.debug(task.getPriority().toString());
                 task.setExecutorId(rs.getLong("task_executor_id"));
-                log.debug(task.getExecutorId().toString());
                 task.setAuthor(rs.getLong("task_author_id"));
                 list.add(task);
             }
         }
+        log.debug("Create list of task");
         return list;
     }
 }

@@ -35,8 +35,7 @@ public class UserDto {
     @Length(max = 255, message = "Username length must be smaller than 255 characters", groups = {OnUpdate.class, OnCreate.class})
     private String username;
 
-    @Schema(description = "User entity encrypted password",
-            example = "$2a$10$yZC/FPekK9j9lkOucr60eOqjhwXxOn/9APcBaotGTdFgf/gO.zC0S")
+    @Schema(description = "User entity encrypted password", example = "1234")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotNull(message = "Password must be not null", groups = {OnUpdate.class, OnCreate.class})
     private String password;

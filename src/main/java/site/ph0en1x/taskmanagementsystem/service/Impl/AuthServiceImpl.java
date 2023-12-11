@@ -23,17 +23,20 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public JwtResponse login(JwtRequest loginRequest) {
         JwtResponse jwtResponse = new JwtResponse();
-        log.debug("jwtResponse create successfully");
         log.debug("Get JwtRequest loginRequest with login:{} and password: {}",
                 loginRequest.getUsername(), loginRequest.getPassword());
+
         var token = new UsernamePasswordAuthenticationToken(
                 loginRequest.getUsername(),
                         loginRequest.getPassword());
         log.debug("UsernamePasswordAuthenticationToken create; with login:{} and password: {}",
                 token.getName(), token.getCredentials());
+
         authenticationManager.authenticate(token);
-        log.debug("authenticationManager successfully");
         User user = userService.getByUserName(loginRequest.getUsername());
+        log.debug("Get user with username:{} and id: {}",
+                user.getUsername(), user.getId());
+
         jwtResponse.setId(user.getId());
         jwtResponse.setUsername(user.getUsername());
         jwtResponse.setAccessToken(tokenProvider.createAccessToken(user.getId(), user.getUsername(), user.getRoles()));

@@ -26,7 +26,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional(readOnly = true)
     public List<Task> getAllByUserId(Long userId) {
-        return null;
+        return taskRepository.findAllByUserId(userId);
     }
 
     @Override

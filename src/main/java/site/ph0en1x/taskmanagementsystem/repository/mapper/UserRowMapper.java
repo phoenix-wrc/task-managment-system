@@ -19,28 +19,25 @@ public class UserRowMapper {
         while (rs.next()) {
             roles.add(Role.valueOf(rs.getString("user_role")));
         }
-        log.debug("get roles");
         rs.beforeFirst();
-        log.debug("start to get tasks");
         List<Task> tasks = TaskRowMapper.mapRows(rs);
-        log.debug("get tasks");
         rs.beforeFirst();
         if (rs.next()) {
             User user = new User();
             user.setId(rs.getLong("user_id"));
-            log.debug("get user_id");
             user.setName(rs.getString("user_name"));
-            log.debug("get user_name");
             user.setSecondName(rs.getString("user_second_name"));
-            log.debug("get user_second_name");
             user.setLastName(rs.getString("user_last_name"));
-            log.debug("get user_last_name");
-            user.setUsername("user_username");
-            log.debug("get user_username");
+            user.setUsername(rs.getString("user_username"));
             user.setPassword(rs.getString("user_password"));
-            log.debug("get user_password");
             user.setRoles(roles);
             user.setTasksOwn(tasks);
+            log.debug("Create user: {}, {}, {}, {}, {}",
+                    user.getId(),
+                    user.getName(),
+                    user.getSecondName(),
+                    user.getLastName(),
+                    user.getUsername());
             return user;
         }
         return null;
