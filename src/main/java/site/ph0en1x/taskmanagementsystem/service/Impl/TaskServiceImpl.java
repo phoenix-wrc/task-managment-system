@@ -76,6 +76,6 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional
     public void delete(Long id) {
-        taskRepository.delete(id);
+        taskRepository.deleteById(id);
     }
 }
