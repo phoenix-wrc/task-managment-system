@@ -20,6 +20,7 @@ public class TaskRepositoryImpl implements TaskRepository {
             select t.id              as task_id,
                    t.title           as task_title,
                    t.description     as task_description,
+                   uto.user_id       as task_author_id,
                    t.expiration_date as task_expiration_date,
                    t.create_date     as task_create_date,
                    t.status          as task_status,
@@ -28,6 +29,7 @@ public class TaskRepositoryImpl implements TaskRepository {
             from task t
                      join task_priority tp on tp.id = t.priority_id
                      join user_task_executor te on te.task_id = t.id
+                     join user_task_owner uto on t.id = uto.task_id
             where t.id = ?;""";
     private final String FIND_ALL_BY_USER_ID = """
             select t.id              as task_id,
@@ -36,7 +38,9 @@ public class TaskRepositoryImpl implements TaskRepository {
                    t.expiration_date as task_expiration_date,
                    t.create_date     as task_create_date,
                    t.status          as task_status,
+           
                    tp.priority_name  as task_priority
+                   
             from task t
                      join user_task_owner ut on t.id = ut.task_id
                      join task_priority tp on tp.id = t.priority_id

@@ -1,6 +1,7 @@
 package site.ph0en1x.taskmanagementsystem.repository.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import site.ph0en1x.taskmanagementsystem.model.entity.user.Role;
 import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class UserRepositoryImpl implements UserRepository {
     private final DataSourceConfig dataSourceConfig;
 
@@ -35,7 +37,7 @@ public class UserRepositoryImpl implements UserRepository {
                    t.status          as task_status,
                    tp.priority_name  as task_priority,
                    te.user_id        as task_executor_id,
-                   uto.user_id as task_owner_id
+                   uto.user_id       as task_author_id
             from app_user u
                      LEFT JOIN user_role ur on u.id = ur.user_id
                      LEFT JOIN user_task_owner uto on u.id = uto.user_id
@@ -57,10 +59,11 @@ public class UserRepositoryImpl implements UserRepository {
                    t.title           as task_title,
                    t.description     as task_description,
                    t.expiration_date as task_expiration_date,
+                   t.create_date     as task_create_date,
                    t.status          as task_status,
                    tp.priority_name  as task_priority,
                    te.user_id        as task_executor_id,
-                   uto.user_id as task_owner_id
+                   uto.user_id       as task_author_id
             from app_user u
                      LEFT JOIN user_role ur on u.id = ur.user_id
                      LEFT JOIN user_task_owner uto on u.id = uto.user_id
@@ -131,9 +134,11 @@ public class UserRepositoryImpl implements UserRepository {
                     ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             statement.setString(1, username);
             try (ResultSet rs = statement.executeQuery()) {
+                log.debug("Trying to find user by username: {}", username);
                 return Optional.ofNullable(UserRowMapper.mapRow(rs));
             }
         } catch (SQLException ex) {
+            log.debug(ex.toString());
             throw new ResourceMappingException("Error while finding user by username");
         }
     }
@@ -229,7 +234,7 @@ public class UserRepositoryImpl implements UserRepository {
     public void delete(Long id) {
         try {
             Connection connection = dataSourceConfig.getConnection();
-            PreparedStatement statement = connection.prepareStatement(IS_TASK_EXECUTOR);
+            PreparedStatement statement = connection.prepareStatement(DELETE);
             statement.setLong(1, id);
 
             statement.executeUpdate();

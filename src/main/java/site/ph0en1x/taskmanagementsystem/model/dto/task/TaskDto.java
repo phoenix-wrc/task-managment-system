@@ -31,7 +31,7 @@ public class TaskDto {
 
     private Long author;
 
-    private Long executor;
+    private Long executorId;
 
     @DateTimeFormat (iso = DateTimeFormat.ISO.TIME)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")

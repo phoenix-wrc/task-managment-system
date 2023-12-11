@@ -1,6 +1,7 @@
 package site.ph0en1x.taskmanagementsystem.service.Impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -42,8 +44,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User create(User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            throw new IllegalStateException("Username already exist");
+            log.debug("send that user already exists");
+            throw new IllegalStateException("User already exists.");
         }
+        log.debug("User with username:{} does not exist", user.getUsername());
         if (!user.getPassword().equals(user.getPasswordConfirmation())) {
             throw new IllegalStateException("Password and password confirmation does not match");
         }

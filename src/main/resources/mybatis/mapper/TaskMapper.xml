@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.ph0en1x.taskmanagementsystem.repository.TaskRepository">
+    <resultMap id="UserResultMap" type="site.ph0en1x.taskmanagementsystem.model.entity.task.Task"
+               autoMapping="false">
+        <id property="id" column="user_id"/>
+        <result property="title" column="task_title"/>
+        <result property="description" column="task_description"/>
+        <result property="status" column="task_status"/>
+        <result property="priority" column="task_priority"/>
+        <result property="author" column="task_author"/>
+        <result property="executorId" column="task_executor_id"/>
+        <result property="expirationDate" column="task_expiration_date"/>
+        <result property="createDate" column="task_create_date"/>
+    </resultMap>
+
+    <select id="findById" resultMap="TaskResultMap">
+        select t.id as task_id,
+        t.title as task_title,
+        t.description as task_description,
+        t.expiration_date as task_expiration_date,
+        t.create_date as task_create_date,
+        t.status as task_status,
+        tp.priority_name as task_priority,
+        te.user_id as task_executor_id
+        from task t
+        join task_priority tp on tp.id = t.priority_id
+        join user_task_executor te on te.task_id = t.id
+        where t.id = #{id}
+    </select>
+    <select id="findAllByUserId" resultMap="TaskResultMap">
+        select t.id as task_id,
+        t.title as task_title,
+        t.description as task_description,
+        t.expiration_date as task_expiration_date,
+        t.create_date as task_create_date,
+        t.status as task_status,
+        tp.priority_name as task_priority
+        from task t
+        join user_task_owner ut on t.id = ut.task_id
+        join task_priority tp on tp.id = t.priority_id
+        where ut.user_id = #{userId}
+    </select>
+
+    <insert id="appointToUserById">
+        INSERT INTO user_task_owner (task_id, user_id)
+        VALUES (#{task_id}, #{user_id});
+    </insert>
+
+    <insert id="appointToExecutorById">
+        INSERT INTO user_task_executor (task_id, user_id)
+        VALUES (#{task_id}, #{user_id});
+    </insert>
+
+    <update id="update">
+        UPDATE task
+        SET title = #{title},
+        description = #{description},
+        expiration_date = #{expiration_date},
+        status = #{status},
+        priority_id = (select tp.id
+        from task_priority tp
+        where tp.priority_name = #{priority})
+        WHERE id = #{id};
+    </update>
+
+    <insert id="create" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO task (title, description, expiration_date, status, priority_id)
+        VALUES (#{title}, #{description}, #{expiration_date}, #{status},
+        (select tp.id
+        from task_priority tp
+        where tp.priority_name = #{priority})
+        );
+    </insert>
+    <delete id="delete">
+        DELETE FROM task
+        WHERE id = #{id};
+    </delete>
+</mapper>

@@ -1,5 +1,6 @@
 package site.ph0en1x.taskmanagementsystem.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +19,7 @@ import site.ph0en1x.taskmanagementsystem.service.UserService;
 @RequiredArgsConstructor
 @Validated
 @Slf4j
+@Tag(name = "Auth controller", description = "Auth API")
 public class AuthController {
     private final AuthService authService;
     private final UserService userService;

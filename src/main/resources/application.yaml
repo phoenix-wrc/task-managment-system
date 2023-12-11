@@ -6,17 +6,27 @@ spring:
     password: postgres
   sql:
     init:
-      mode: always
+      mode: never
       continue-on-error: false
     #      data-locations: classpath:demo_data.sql
+  liquibase:
+    change-log: classpath:db/liquibase/db.changelog.yaml
+    enabled: true
+#    default-schema: task-management-system
+    liquibase-schema: task-management-system
 logging:
   level:
     org.springframework.web: ERROR
-    site.ph0en1x.taskmanagementsystem.controller: DEBUG
+    site.ph0en1x.taskmanagementsystem: DEBUG
 
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
 
 security:
   jwt:
     secret: 0J3QtdC80L3QvtCz0L7QodC+0LvQuNCU0LvRj9CS0LDRiNC10LPQvtCn0LDRj9CY0LvQuNCa0L7RhNC1
     access: 360_000_000
     refresh: 2_592_000_000
+
+springdoc:
+  override-with-generic-response: false

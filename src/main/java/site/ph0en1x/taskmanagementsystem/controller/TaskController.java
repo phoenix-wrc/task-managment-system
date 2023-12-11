@@ -1,6 +1,8 @@
 package site.ph0en1x.taskmanagementsystem.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import site.ph0en1x.taskmanagementsystem.model.dto.task.TaskDto;
@@ -13,6 +15,8 @@ import site.ph0en1x.taskmanagementsystem.service.TaskService;
 @RequestMapping("api/v1/tasks")
 @RequiredArgsConstructor
 @Validated
+@Slf4j
+@Tag(name = "Task controller", description = "Task API")
 public class TaskController {
     private final TaskService service;
     private final TaskMapper taskMapper;
