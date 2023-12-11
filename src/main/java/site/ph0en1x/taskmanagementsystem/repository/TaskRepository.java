@@ -11,17 +11,9 @@ public interface TaskRepository {
 
     List<Task> findAllByUserId(Long userId);
 
-    void appointToUserById(
-//            @Param("task_id")
-            Long taskId,
-//            @Param("user_id")
-            Long userId);
+    void appointToUserById(Long taskId, Long userId);
 
-    void appointToExecutorById(
-//            @Param("task_id")
-            Long taskId,
-//            @Param("user_id")
-            Long userId);
+    void appointToExecutorById(Long taskId, Long userId);
 
     void update(Task task);
 

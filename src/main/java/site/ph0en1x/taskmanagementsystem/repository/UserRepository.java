@@ -15,23 +15,11 @@ public interface UserRepository {
 
     void create(User user);
 
-    void insertUserRole(
-//            @Param("userId")
-            Long userId,
-//            @Param("role")
-            Role role);
+    void insertUserRole(Long userId, Role role);
 
-    boolean isTaskOwner(
-//            @Param("userId")
-            Long userId,
-//            @Param("taskId")
-            Long taskId);
+    boolean isTaskOwner(Long userId, Long taskId);
 
-    boolean isTaskExecutor(
-//            @Param("userId")
-            Long userId,
-//            @Param("taskId")
-            Long taskId);
+    boolean isTaskExecutor(Long userId, Long taskId);
 
     void delete(Long id);
 }
