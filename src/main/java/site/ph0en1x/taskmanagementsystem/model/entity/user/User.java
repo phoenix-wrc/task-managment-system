@@ -17,6 +17,5 @@ public class User {
     private String passwordConfirmation;
     private Set<Role> roles;
     private List<Task> tasksOwn;
-    private List<Task> tasksOnExecuting;
 
 }

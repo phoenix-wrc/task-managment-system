@@ -1,5 +1,3 @@
-create schema if not exists "task-management-system";
-
 create table if not exists app_user
 (
     id          bigserial primary key,
