@@ -1,19 +1,16 @@
 spring:
+  config:
+    import: optional:file:.env[.properties]
   datasource:
-    url: jdbc:postgresql://localhost:5432/task-management-system?currentSchema=task-management-system
+    url: jdbc:postgresql://${HOST}:5432/${POSTGRES_DATABASE}?currentSchema=${POSTGRES_SCHEMA}
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: postgres
-  sql:
-    init:
-      mode: never
-      continue-on-error: false
-    #      data-locations: classpath:demo_data.sql
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
   liquibase:
     change-log: classpath:db/liquibase/db.changelog.yaml
     enabled: true
 #    default-schema: task-management-system
-    liquibase-schema: task-management-system
+    liquibase-schema: ${POSTGRES_SCHEMA}
 logging:
   level:
     org.springframework.web: ERROR
@@ -24,9 +21,9 @@ mybatis:
 
 security:
   jwt:
-    secret: 0J3QtdC80L3QvtCz0L7QodC+0LvQuNCU0LvRj9CS0LDRiNC10LPQvtCn0LDRj9CY0LvQuNCa0L7RhNC1
-    access: 360_000_000
-    refresh: 2_592_000_000
+    secret: ${JWT_SECRET}
+    access: 1 #hours
+    refresh: 30 #days
 
 springdoc:
   override-with-generic-response: false
