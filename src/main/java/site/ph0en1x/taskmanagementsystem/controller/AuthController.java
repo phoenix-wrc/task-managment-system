@@ -34,6 +34,8 @@ public class AuthController {
 
     @PostMapping("/registration")
     public UserDto registration(@Validated(OnCreate.class) @RequestBody UserDto dto) {
+        log.debug("Get registration request with login:{} and password: {}"
+                , dto.getUsername(), dto.getPassword());
         User user = userMapper.toEntity(dto);
         User createdUser = userService.create(user);
         return userMapper.toDto(createdUser);
@@ -41,6 +43,7 @@ public class AuthController {
 
     @PostMapping("/refresh")
     public JwtResponse refresh(@RequestBody String refreshToken) {
+        log.debug("receive refresh token {}", refreshToken);
         return authService.refresh(refreshToken);
     }
 

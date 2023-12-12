@@ -11,6 +11,11 @@ spring:
     enabled: true
 #    default-schema: task-management-system
     liquibase-schema: ${POSTGRES_SCHEMA}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 logging:
   level:

@@ -7,11 +7,13 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 import site.ph0en1x.taskmanagementsystem.model.dto.validation.OnCreate;
 import site.ph0en1x.taskmanagementsystem.model.dto.validation.OnUpdate;
+import site.ph0en1x.taskmanagementsystem.model.entity.comment.Comment;
 import site.ph0en1x.taskmanagementsystem.model.entity.task.Priority;
 import site.ph0en1x.taskmanagementsystem.model.entity.task.Status;
 import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class TaskDto {
@@ -40,4 +42,6 @@ public class TaskDto {
     @DateTimeFormat (iso = DateTimeFormat.ISO.TIME)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime expirationDate;
+
+    private List<Comment> comments;
 }

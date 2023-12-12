@@ -1,6 +1,7 @@
 package site.ph0en1x.taskmanagementsystem.service.Impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.ph0en1x.taskmanagementsystem.model.entity.task.Priority;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
@@ -25,7 +27,9 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional(readOnly = true)
     public Task getById(Long id) {
-        return taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Task not found"));
+        var out = taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Task not found"));
+//        log.debug(, out.getAuthorId(), t);
+        return out;
     }
 
     @Override

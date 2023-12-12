@@ -2,8 +2,6 @@ package site.ph0en1x.taskmanagementsystem.model.entity.comment;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import site.ph0en1x.taskmanagementsystem.model.entity.task.Task;
-import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
 
 import java.time.LocalDateTime;
 
@@ -15,13 +13,9 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="task_id")
-    private Task task;
+    private Long taskId;
 
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
+    private Long userId;
 
     private String title;
 

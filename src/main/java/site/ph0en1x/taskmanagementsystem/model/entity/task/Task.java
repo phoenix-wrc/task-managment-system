@@ -2,7 +2,6 @@ package site.ph0en1x.taskmanagementsystem.model.entity.task;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 import site.ph0en1x.taskmanagementsystem.model.entity.comment.Comment;
 
 import java.time.LocalDateTime;
@@ -11,6 +10,12 @@ import java.util.List;
 @Entity
 @Table(name = "task")
 @Data
+@SecondaryTable(name = "task_priority",
+        pkJoinColumns=@PrimaryKeyJoinColumn(name="task_id", referencedColumnName="id"))
+@SecondaryTable(name = "user_task_owner",
+        pkJoinColumns=@PrimaryKeyJoinColumn(name="task_id", referencedColumnName="id"))
+@SecondaryTable(name = "user_task_executor",
+        pkJoinColumns=@PrimaryKeyJoinColumn(name="task_id", referencedColumnName="id"))
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,12 +29,15 @@ public class Task {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
-    @Enumerated(value = EnumType.ORDINAL)
+    @Enumerated(value = EnumType.STRING)
+    @Column(table="task_priority", name="priority")
     private Priority priority;
 
-//    private Long authorId;
-//
-//    private Long executorId;
+    @Column(table="user_task_owner", name="author_id")
+    private Long authorId;
+
+    @Column(table="user_task_executor", name="executor_id")
+    private Long executorId;
 
     private LocalDateTime createDate;
 

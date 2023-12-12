@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User create(User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            log.debug("send that user already exists");
+            log.debug("seen that user already exists");
             throw new IllegalStateException("User already exists.");
         }
         log.debug("User with username:{} does not exist", user.getUsername());

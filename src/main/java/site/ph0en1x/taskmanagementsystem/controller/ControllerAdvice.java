@@ -1,5 +1,6 @@
 package site.ph0en1x.taskmanagementsystem.controller;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -73,6 +74,12 @@ public class ControllerAdvice {
     public ExceptionBody handlerAuthenticationException(AuthenticationException ex) {
         log.debug(ex.getMessage());
         return new ExceptionBody("Authentication failed.");
+    }
+    @ExceptionHandler(ExpiredJwtException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionBody handlerAuthenticationException(ExpiredJwtException ex) {
+        log.debug(ex.getMessage());
+        return new ExceptionBody("Authentication Expired. Please refresh token");
     }
 
     @ExceptionHandler(Exception.class)
