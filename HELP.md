@@ -6,11 +6,17 @@
 HOST={адрес расположение базы данных в докер}
 
 POSTGRES_USERNAME={имя пользователя для базы данных}
+
 POSTGRES_PASSWORD={пароль для базы данных}
+
 POSTGRES_DATABASE={название базы данных}по умолчанию {task-management-system}
+
 POSTGRES_SCHEMA={название схемы} по умолчанию {task-management-system}
 
 JWT_SECRET={секрет для шифрования}
+
+
+Затем можно запускать фаил докера. 
 
 
 ### Reference Documentation
