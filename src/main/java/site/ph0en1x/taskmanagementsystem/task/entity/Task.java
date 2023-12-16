@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "task")
+@Table
 @Data
 @SecondaryTable(name = "task_priority",
         pkJoinColumns=@PrimaryKeyJoinColumn(name="task_id", referencedColumnName="id"))
