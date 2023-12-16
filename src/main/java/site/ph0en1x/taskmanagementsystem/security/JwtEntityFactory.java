@@ -2,8 +2,8 @@ package site.ph0en1x.taskmanagementsystem.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import site.ph0en1x.taskmanagementsystem.model.entity.user.Role;
-import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
+import site.ph0en1x.taskmanagementsystem.user.entity.Role;
+import site.ph0en1x.taskmanagementsystem.user.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;

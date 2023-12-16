@@ -5,9 +5,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import site.ph0en1x.taskmanagementsystem.model.entity.user.Role;
+import site.ph0en1x.taskmanagementsystem.user.entity.Role;
 import site.ph0en1x.taskmanagementsystem.security.JwtEntity;
-import site.ph0en1x.taskmanagementsystem.service.UserService;
+import site.ph0en1x.taskmanagementsystem.user.service.UserService;
 
 @Service("customSecurityExpression")
 @RequiredArgsConstructor

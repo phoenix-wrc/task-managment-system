@@ -12,12 +12,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import site.ph0en1x.taskmanagementsystem.model.dto.auth.JwtResponse;
-import site.ph0en1x.taskmanagementsystem.model.entity.user.Role;
-import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
-import site.ph0en1x.taskmanagementsystem.model.exception.AccesDeniedException;
-import site.ph0en1x.taskmanagementsystem.service.UserService;
-import site.ph0en1x.taskmanagementsystem.service.props.JwtProperties;
+import site.ph0en1x.taskmanagementsystem.auth.jwt.JwtResponse;
+import site.ph0en1x.taskmanagementsystem.user.entity.Role;
+import site.ph0en1x.taskmanagementsystem.user.entity.User;
+import site.ph0en1x.taskmanagementsystem.exception.AccesDeniedException;
+import site.ph0en1x.taskmanagementsystem.user.service.UserService;
+import site.ph0en1x.taskmanagementsystem.auth.service.props.JwtProperties;
 
 import java.security.Key;
 import java.time.Instant;

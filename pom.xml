@@ -24,7 +24,6 @@
         <hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
         <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
         <jsonwebtoken.version>0.11.5</jsonwebtoken.version>
-        <mybatis.version>3.0.2</mybatis.version>
         <liquibase.version>4.24.0</liquibase.version>
         <springdoc-openapi.version>2.2.0</springdoc-openapi.version>
         <preliquibase.version>1.5.0</preliquibase.version>
@@ -116,11 +115,11 @@
             <version>${jakarta.validation-api.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>${liquibase.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.liquibase</groupId>-->
+<!--            <artifactId>liquibase-core</artifactId>-->
+<!--            <version>${liquibase.version}</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -128,11 +127,11 @@
             <version>${springdoc-openapi.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>net.lbruun.springboot</groupId>
-            <artifactId>preliquibase-spring-boot-starter</artifactId>
-            <version>${preliquibase.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>net.lbruun.springboot</groupId>-->
+<!--            <artifactId>preliquibase-spring-boot-starter</artifactId>-->
+<!--            <version>${preliquibase.version}</version>-->
+<!--        </dependency>-->
 
 
     </dependencies>

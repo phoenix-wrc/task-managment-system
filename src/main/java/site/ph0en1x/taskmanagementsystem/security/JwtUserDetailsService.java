@@ -5,8 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import site.ph0en1x.taskmanagementsystem.model.entity.user.User;
-import site.ph0en1x.taskmanagementsystem.service.UserService;
+import site.ph0en1x.taskmanagementsystem.user.entity.User;
+import site.ph0en1x.taskmanagementsystem.user.service.UserService;
 
 @Service
 @RequiredArgsConstructor
