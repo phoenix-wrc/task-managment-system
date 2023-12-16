@@ -1,6 +1,7 @@
-package site.ph0en1x.taskmanagementsystem.exception;
+package site.ph0en1x.taskmanagementsystem.security.exception;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,10 +12,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import site.ph0en1x.taskmanagementsystem.exception.AccesDeniedException;
-import site.ph0en1x.taskmanagementsystem.exception.ExceptionBody;
-import site.ph0en1x.taskmanagementsystem.exception.ResourceMappingException;
-import site.ph0en1x.taskmanagementsystem.exception.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,6 +41,7 @@ public class ControllerAdvice {
     @ExceptionHandler({AccesDeniedException.class, AccessDeniedException.class})
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ExceptionBody handlerAccessDeniedException(AccessDeniedException ex) {
+        log.debug(ex.getMessage());
         return new ExceptionBody("Access denied");
     }
 
@@ -65,7 +63,7 @@ public class ControllerAdvice {
         body.setErrors(ex.getConstraintViolations().stream()
                 .collect(Collectors.toMap(
                         constraintViolation -> constraintViolation.getPropertyPath().toString(),
-                        constraintViolation -> constraintViolation.getMessage()
+                        ConstraintViolation::getMessage
                 )));
         return body;
     }

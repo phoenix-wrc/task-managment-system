@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import site.ph0en1x.taskmanagementsystem.comment.entity.Comment;
 import site.ph0en1x.taskmanagementsystem.auth.validation.OnCreate;
 import site.ph0en1x.taskmanagementsystem.auth.validation.OnUpdate;
+import site.ph0en1x.taskmanagementsystem.user.entity.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,9 +29,9 @@ public class TaskDto {
 
     private Priority priority;
 
-    private Long author;
-
-    private Long executorId;
+//    private Long author;
+//
+//    private Long executor;
 
     @DateTimeFormat (iso = DateTimeFormat.ISO.TIME)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")

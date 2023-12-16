@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import site.ph0en1x.taskmanagementsystem.auth.jwt.JwtResponse;
 import site.ph0en1x.taskmanagementsystem.user.entity.Role;
 import site.ph0en1x.taskmanagementsystem.user.entity.User;
-import site.ph0en1x.taskmanagementsystem.exception.AccesDeniedException;
+import site.ph0en1x.taskmanagementsystem.security.exception.AccesDeniedException;
 import site.ph0en1x.taskmanagementsystem.user.service.UserService;
 import site.ph0en1x.taskmanagementsystem.auth.service.props.JwtProperties;
 
@@ -56,7 +56,6 @@ public class JwtTokenProvider {
     public String createRefreshToken(Long userId, String username) {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("id", userId);
-        Date now = new Date();
         Instant validity = Instant.now().plus(jwtProperties.getRefresh(), ChronoUnit.DAYS);
         return Jwts
                 .builder()

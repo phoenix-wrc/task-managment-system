@@ -1,4 +1,4 @@
-package site.ph0en1x.taskmanagementsystem.comment.dto;
+package site.ph0en1x.taskmanagementsystem.comment.entity.dto;
 
 import site.ph0en1x.taskmanagementsystem.user.entity.User;
 

@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
-import site.ph0en1x.taskmanagementsystem.exception.ResourceNotFoundException;
+import site.ph0en1x.taskmanagementsystem.security.exception.ResourceNotFoundException;
 
 import java.io.IOException;
 

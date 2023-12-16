@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import site.ph0en1x.taskmanagementsystem.comment.entity.comment.CommentDto;
 import site.ph0en1x.taskmanagementsystem.auth.validation.OnUpdate;
+import site.ph0en1x.taskmanagementsystem.comment.entity.dto.CommentDto;
 
 @RestController
 @RequestMapping("/api/v1/comments")
@@ -23,7 +23,7 @@ public class CommentController {
     @PutMapping
     @Operation(summary = "Update user")
     @PreAuthorize("@customSecurityExpression.canAccesUser(#userDto.id)")
-    public CommentDto update(@Validated(OnUpdate.class) @RequestBody CommentDto userDto) {
+    public CommentDto update(@Validated(OnUpdate.class) @RequestBody CommentDto commentDto) {
         return null;
     }
 

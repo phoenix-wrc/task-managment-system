@@ -1,4 +1,4 @@
-package site.ph0en1x.taskmanagementsystem.exception;
+package site.ph0en1x.taskmanagementsystem.security.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

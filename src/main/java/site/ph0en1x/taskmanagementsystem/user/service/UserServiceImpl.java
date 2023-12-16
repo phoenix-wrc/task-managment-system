@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.ph0en1x.taskmanagementsystem.user.entity.Role;
 import site.ph0en1x.taskmanagementsystem.user.entity.User;
-import site.ph0en1x.taskmanagementsystem.exception.ResourceNotFoundException;
+import site.ph0en1x.taskmanagementsystem.security.exception.ResourceNotFoundException;
 import site.ph0en1x.taskmanagementsystem.user.UserRepository;
 
 import java.util.Set;

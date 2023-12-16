@@ -1,7 +1,5 @@
 create sequence app_user_seq start with 1 increment by 50;
-
 create sequence comment_seq start with 1 increment by 50;
-
 create sequence task_seq start with 1 increment by 50;
 
 create table app_user (
@@ -51,19 +49,13 @@ create table user_role (
 );
 
 create table user_task_executor (
-                                    executor_id bigint,
-                                    task_id bigint not null,
                                     tasks_executor_id bigint not null unique,
-                                    user_id bigint not null,
-                                    primary key (task_id)
+                                    user_id bigint not null
 );
 
 create table user_task_owner (
-                                 author_id bigint,
-                                 task_id bigint not null,
                                  tasks_own_id bigint not null unique,
-                                 user_id bigint not null,
-                                 primary key (task_id)
+                                 user_id bigint not null
 );
 
 alter table if exists task_comments
@@ -87,11 +79,6 @@ alter table if exists user_role
             references app_user;
 
 alter table if exists user_task_executor
-    add constraint FKegnteaduxm5v7ary4q10itym7
-        foreign key (task_id)
-            references task;
-
-alter table if exists user_task_executor
     add constraint FK8eubxh53eyxs8saxpe7nc7kiu
         foreign key (tasks_executor_id)
             references task;
@@ -102,11 +89,6 @@ alter table if exists user_task_executor
             references app_user;
 
 alter table if exists user_task_owner
-    add constraint FKm0861mtfvkacxi3d084qlhucf
-        foreign key (task_id)
-            references task;
-
-alter table if exists user_task_owner
     add constraint FKakwe5lt38ecy4xpqmumcnpjio
         foreign key (tasks_own_id)
             references task;
@@ -114,4 +96,4 @@ alter table if exists user_task_owner
 alter table if exists user_task_owner
     add constraint FKayefjqktpu6064qabjdu4rmdb
         foreign key (user_id)
-            references app_user;
+            references app_user

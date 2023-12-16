@@ -8,7 +8,7 @@ import site.ph0en1x.taskmanagementsystem.task.entity.Priority;
 import site.ph0en1x.taskmanagementsystem.task.entity.Status;
 import site.ph0en1x.taskmanagementsystem.task.entity.Task;
 import site.ph0en1x.taskmanagementsystem.user.entity.User;
-import site.ph0en1x.taskmanagementsystem.exception.ResourceNotFoundException;
+import site.ph0en1x.taskmanagementsystem.security.exception.ResourceNotFoundException;
 import site.ph0en1x.taskmanagementsystem.task.TaskRepository;
 import site.ph0en1x.taskmanagementsystem.user.service.UserService;
 
