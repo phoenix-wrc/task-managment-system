@@ -15,7 +15,7 @@ public class CustomSecurityExpression {
 
     private final UserService userService;
 
-    public boolean canAccesUser(Long id) {
+    public boolean canAccessUser(Long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         JwtEntity user = (JwtEntity) authentication.getPrincipal();
         Long userId = user.getId();
@@ -24,7 +24,7 @@ public class CustomSecurityExpression {
         return userId.equals(id) || hasAnyRole(authentication, Role.ROLE_ADMIN);
     }
 
-    public boolean canAccesSetStatus(Long taskId) {
+    public boolean canAccessSetStatus(Long taskId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         JwtEntity user = (JwtEntity) authentication.getPrincipal();
         Long userId = user.getId();

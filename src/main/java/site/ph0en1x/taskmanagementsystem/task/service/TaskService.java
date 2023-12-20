@@ -16,4 +16,6 @@ public interface TaskService {
 //    void appointToExecutorById(Long taskId, Long userId);
 
     void delete(Long id);
+
+    List<Task> getAllExecuteById(Long id);
 }

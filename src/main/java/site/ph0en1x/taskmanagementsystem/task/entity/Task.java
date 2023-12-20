@@ -1,6 +1,9 @@
 package site.ph0en1x.taskmanagementsystem.task.entity;
 
+
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import site.ph0en1x.taskmanagementsystem.comment.entity.Comment;
 import site.ph0en1x.taskmanagementsystem.user.entity.User;
@@ -10,13 +13,12 @@ import java.util.List;
 
 @Entity
 @Table
+@org.springframework.data.relational.core.mapping.Table
 @Data
+@Builder
+@AllArgsConstructor
 @SecondaryTable(name = "task_priority",
         pkJoinColumns=@PrimaryKeyJoinColumn(name="task_id", referencedColumnName="id"))
-//@SecondaryTable(name = "user_task_owner",
-//        pkJoinColumns=@PrimaryKeyJoinColumn(name="task_id", referencedColumnName="id"))
-//@SecondaryTable(name = "user_task_executor",
-//        pkJoinColumns=@PrimaryKeyJoinColumn(name="task_id", referencedColumnName="id"))
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,4 +50,6 @@ public class Task {
 
     @OneToMany
     private List<Comment> comments;
+
+    public Task() {    }
 }

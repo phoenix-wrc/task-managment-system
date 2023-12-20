@@ -9,7 +9,7 @@ import site.ph0en1x.taskmanagementsystem.user.entity.UserProfile;
 import java.util.Optional;
 
 //@Mapper
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface AppUserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUsername(String username);
 
@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = """
             SELECT exists(SELECT *
-              FROM "task-management-system".user_task_owner
+              FROM user_task_owner
               WHERE user_id = :userId
                 AND tasks_own_id = :taskId)
             """, nativeQuery = true)
@@ -25,7 +25,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = """
             SELECT exists(SELECT *
-              FROM "task-management-system".user_task_executor
+              FROM user_task_executor
               WHERE user_id = :userId
                 AND tasks_executor_id = :taskId)
             """, nativeQuery = true)

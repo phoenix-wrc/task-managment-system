@@ -1,7 +1,11 @@
 package site.ph0en1x.taskmanagementsystem.user.entity;
 
-import jakarta.persistence.*;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import jakarta.persistence.*;
 import site.ph0en1x.taskmanagementsystem.task.entity.Task;
 
 import java.util.List;
@@ -9,7 +13,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "app_user")
+@org.springframework.data.relational.core.mapping.Table
 @Data
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,4 +50,6 @@ public class User {
     @OneToMany
     @JoinColumn(name = "task_id")
     private List<Task> tasksExecutor;
+
+    public User() {    }
 }

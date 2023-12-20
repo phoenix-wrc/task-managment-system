@@ -1,4 +1,4 @@
-package site.ph0en1x.taskmanagementsystem.auth.service;
+package site.ph0en1x.taskmanagementsystem.auth.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Service;
 import site.ph0en1x.taskmanagementsystem.auth.jwt.JwtRequest;
 import site.ph0en1x.taskmanagementsystem.auth.jwt.JwtResponse;
+import site.ph0en1x.taskmanagementsystem.auth.service.AuthService;
 import site.ph0en1x.taskmanagementsystem.user.entity.User;
 import site.ph0en1x.taskmanagementsystem.security.JwtTokenProvider;
 import site.ph0en1x.taskmanagementsystem.user.service.UserService;

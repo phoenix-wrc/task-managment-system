@@ -6,7 +6,9 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASSWORD}
-#  liquibase:
+  main:
+    allow-bean-definition-overriding: true
+  #  liquibase:
 #    change-log: classpath:db/liquibase/db.changelog.yaml
 #    enabled: true
 #    default-schema: task-management-system
@@ -17,7 +19,7 @@ spring:
       hibernate:
         format_sql: true
         hbm2ddl:
-          auto: create
+          auto: validate
     generate-ddl: true
     hibernate:
       ddl-auto: validate

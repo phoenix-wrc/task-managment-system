@@ -1,4 +1,4 @@
-package site.ph0en1x.taskmanagementsystem.task.service;
+package site.ph0en1x.taskmanagementsystem.task.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import site.ph0en1x.taskmanagementsystem.task.entity.Priority;
 import site.ph0en1x.taskmanagementsystem.task.entity.Status;
 import site.ph0en1x.taskmanagementsystem.task.entity.Task;
+import site.ph0en1x.taskmanagementsystem.task.service.TaskService;
 import site.ph0en1x.taskmanagementsystem.user.entity.User;
 import site.ph0en1x.taskmanagementsystem.security.exception.ResourceNotFoundException;
 import site.ph0en1x.taskmanagementsystem.task.TaskRepository;
@@ -27,7 +28,7 @@ public class TaskServiceImpl implements TaskService {
     @Transactional(readOnly = true)
     public Task getById(Long id) {
         var out = taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Task not found"));
-//        log.debug(, out.getAuthorId(), t);
+        log.debug("TaskServiceImpl getById : {}", id);
         return out;
     }
 
@@ -35,6 +36,12 @@ public class TaskServiceImpl implements TaskService {
     @Transactional(readOnly = true)
     public List<Task> getAllByUserId(Long userId) {
         return taskRepository.findAllByAuthorId(userId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Task> getAllExecuteById(Long id) {
+        return taskRepository.findAllByExecutorId(id);
     }
 
     @Override

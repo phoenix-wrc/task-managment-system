@@ -2,6 +2,7 @@ package site.ph0en1x.taskmanagementsystem.task.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@Builder
 public class TaskDto {
 
     @NotNull(message = "ID must be not null", groups = {OnUpdate.class})
@@ -29,9 +31,9 @@ public class TaskDto {
 
     private Priority priority;
 
-//    private Long author;
-//
-//    private Long executor;
+    private Long author;
+
+    private Long executor;
 
     @DateTimeFormat (iso = DateTimeFormat.ISO.TIME)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")

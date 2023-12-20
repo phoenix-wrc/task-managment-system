@@ -2,10 +2,12 @@ package site.ph0en1x.taskmanagementsystem.task;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import site.ph0en1x.taskmanagementsystem.task.entity.Task;
 
 import java.util.List;
 
+@Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
 //    @Query(value = """
@@ -41,8 +43,4 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 //    where uto.author_id = :userId
 //            """, nativeQuery = true)
     List<Task> findAllByAuthorId(@Param("userId") Long userId);
-//
-//    void appointToUserById(@Param("taskId")Long taskId, @Param("userId")Long userId);
-//
-//    void appointToExecutorById(@Param("taskId")Long taskId, @Param("userId")Long userId);
 }
