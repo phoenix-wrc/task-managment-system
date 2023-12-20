@@ -15,7 +15,7 @@ import java.util.Set;
 @Table(name = "app_user")
 @org.springframework.data.relational.core.mapping.Table
 @Data
-@Builder(toBuilder = true)
+@Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class User {
     @Id

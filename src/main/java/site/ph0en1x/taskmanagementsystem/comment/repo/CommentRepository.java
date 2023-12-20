@@ -2,12 +2,10 @@ package site.ph0en1x.taskmanagementsystem.comment.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 import site.ph0en1x.taskmanagementsystem.comment.entity.Comment;
 
 import java.util.List;
 
-@Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findAllByTaskId(Long taskId);
 

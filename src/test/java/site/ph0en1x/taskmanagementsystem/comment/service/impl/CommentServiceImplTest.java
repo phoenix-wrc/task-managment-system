@@ -1,12 +1,16 @@
 package site.ph0en1x.taskmanagementsystem.comment.service.impl;
 
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import site.ph0en1x.taskmanagementsystem.comment.entity.Comment;
-import site.ph0en1x.taskmanagementsystem.comment.service.CommentService;
+import site.ph0en1x.taskmanagementsystem.comment.repo.CommentRepository;
+import site.ph0en1x.taskmanagementsystem.config.TestConfig;
 import site.ph0en1x.taskmanagementsystem.task.entity.Task;
 import site.ph0en1x.taskmanagementsystem.user.entity.User;
 
@@ -14,13 +18,21 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@RequiredArgsConstructor
-//@Sql("/schema-hibernate.sql")
+@ExtendWith(SpringExtension.class)
+@ActiveProfiles("test")
+@Import(TestConfig.class)
+@ExtendWith(MockitoExtension.class)
 class CommentServiceImplTest {
-    private final CommentService service;
+
+    @MockBean
+    private CommentRepository repository;
+
+    private final CommentServiceImpl service;
     private long currentId = 0;
+
+    CommentServiceImplTest(@Autowired CommentServiceImpl service) {
+        this.service = service;
+    }
 
     private Comment getNewComment() {
         var comment = new Comment();

@@ -1,6 +1,7 @@
 package site.ph0en1x.taskmanagementsystem.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
@@ -26,12 +27,16 @@ import site.ph0en1x.taskmanagementsystem.user.service.UserServiceImpl;
 @RequiredArgsConstructor
 public class TestConfig {
 
+    @Autowired
     private final AppUserRepository appUserRepository;
 
+    @Autowired
     private final TaskRepository taskRepository;
 
+    @Autowired
     private final CommentRepository commentRepository;
 
+    @Autowired
     private final AuthenticationManager authenticationManager;
 
     @Bean
@@ -81,4 +86,22 @@ public class TestConfig {
     public AuthService authService() {
         return new AuthServiceImpl(authenticationManager, userService(), tokenProvider());
     }
+
+//    @Bean
+//    @Primary
+//    public CommentRepository commentRepo() {
+//
+//    }
+//
+//    @Bean
+//    @Primary
+//    public AppUserRepository appUserRepository() {
+//
+//    }
+//
+//    @Bean
+//    @Primary
+//    public TaskRepository taskRepository() {
+//
+//    }
 }
