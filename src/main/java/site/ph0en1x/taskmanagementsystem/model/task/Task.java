@@ -12,8 +12,6 @@ public class Task {
     private String description;
     private Status status;
     private Priority priority;
-    private User author;
-    private User executor;
     private LocalDateTime createDate;
     private LocalDateTime expirationDate;
 }
