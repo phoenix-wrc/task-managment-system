@@ -8,7 +8,7 @@ spring:
     init:
       mode: always
       continue-on-error: false
-#      data-locations: classpath:demo_data.sql
+      data-locations: classpath:demo_data.sql
 
 
 security:
@@ -19,3 +19,6 @@ security:
 #    secret: ${JWT_SECRET}
     access: 1 #hours
     refresh: 30 #days
+
+springdoc:
+  override-with-generic-response: false

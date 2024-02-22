@@ -5,8 +5,8 @@ create table if not exists app_user
 (
     id bigserial primary key,
     name varchar(255) not null,
-    second_name varchar(255) not null,
-    lastname varchar(255),
+    father_name varchar(255),
+    lastname varchar(255) not null,
     username varchar(255) not null unique,
     password varchar(255) not null
 );

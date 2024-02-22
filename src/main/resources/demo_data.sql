@@ -1,6 +1,7 @@
-insert into app_user (name, second_name, username, password)
-values ('John',  'Doe', 'johndoe@mail.ru', '$2a$10$yZC/FPekK9j9lkOucr60eOqjhwXxOn/9APcBaotGTdFgf/gO.zC0S'),
-       ('John', 'McClain', 'Alzheimerville@yandex.ru', '$2a$10$yZC/FPekK9j9lkOucr60eOqjhwXxOn/9APcBaotGTdFgf/gO.zC0S');
+insert into app_user (name, lastname, username, password)
+
+values ('John',  'Doe', 'johndoe@mail.ru', '$2a$10$2qSE.MSvjBnlrlpMF8PO4eA6//M06Ah4TGV62vp.HIqwRIJS4HnfS'),
+       ('John', 'McClain', 'Alzheimerville@yandex.ru', '$2a$10$2qSE.MSvjBnlrlpMF8PO4eA6//M06Ah4TGV62vp.HIqwRIJS4HnfS');
 
 -- insert into task_priority (priority_name)
 -- values ('HIGH'),

@@ -10,7 +10,7 @@ import java.util.Set;
 public class User {
     private Long id;
     private String name;
-    private String secondName;
+    private String fatherName;
     private String lastName;
     private String username;
     private String password;
