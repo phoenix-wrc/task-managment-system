@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/task_management_system?schema=task_management_system
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+      continue-on-error: false
+#      data-locations: classpath:demo_data.sql
+
+
+security:
+  jwt:
+    secret: 0J3QtdC80L3QvtCz0L7QodC+0LvQuNCU0LvRj9CS0LDRiNC10LPQvtCn0LDRj9CY0LvQuNCa0L7RhNC1
+#    access: 360_000_000
+#    refresh: 2_592_000_000
+#    secret: ${JWT_SECRET}
+    access: 1 #hours
+    refresh: 30 #days
