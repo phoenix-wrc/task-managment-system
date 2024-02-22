@@ -10,5 +10,4 @@ public interface TaskService {
     Task update(Task task);
     Task create(Task task, Long userId);
     void delete(Long task);
-    void assignToUserById(Long taskId, Long userId);
 }

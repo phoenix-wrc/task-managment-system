@@ -5,9 +5,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import site.ph0en1x.taskmanagementsystem.user.entity.Role;
-import site.ph0en1x.taskmanagementsystem.security.JwtEntity;
-import site.ph0en1x.taskmanagementsystem.user.service.UserService;
+import site.ph0en1x.taskmanagementsystem.model.user.Role;
+import site.ph0en1x.taskmanagementsystem.service.UserService;
+import site.ph0en1x.taskmanagementsystem.web.security.JwtEntity;
 
 @Service("customSecurityExpression")
 @RequiredArgsConstructor
@@ -32,7 +32,7 @@ public class CustomSecurityExpression {
         return userService.isTaskExecutor(userId, taskId);
     }
 
-    public boolean canAccesTask(Long taskId) {
+    public boolean canAccessTask(Long taskId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         JwtEntity user = (JwtEntity) authentication.getPrincipal();
         Long userId = user.getId();

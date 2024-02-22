@@ -8,6 +8,6 @@ public interface UserService {
     User update(User user);
     User create(User user);
     void delete(Long id);
-    User isTaskOwner(Long userId, Long taskId);
-    User isTaskExecutor(Long userId, Long taskId);
+    boolean isTaskOwner(Long userId, Long taskId);
+    boolean isTaskExecutor(Long userId, Long taskId);
 }
